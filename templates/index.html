@@ -26,7 +26,7 @@
         text-align: center;
         margin-bottom: 20px;
       }
-      p{
+      p {
         margin-bottom: 20px;
       }
       h1 {
@@ -103,99 +103,113 @@
           width: auto;
           font-size: 15px; /* Mengurangi ukuran font tombol pada layar kecil */
         }
+       
+       
+       
+
         #result {
-          margin-top: 10px; /* Mengurangi margin atas pada layar kecil */
+          margin-top: 10px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background-color: #f9f9f9;
+          overflow-wrap: break-word; /* Menjaga kata-kata panjang tetap di dalam elemen */
+          word-wrap: break-word;
         }
+
         #hasilDewanagari {
-          font-size: 17px; /* Mengurangi ukuran font pada layar kecil */
+          font-size: 17px;
+          max-width: 100%; /* Tambahkan properti max-width agar tidak keluar dari batas parent */
         }
+
+
+
         .copy-button {
           margin-top: 10px;
         }
       }
       #copyright {
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            position: fixed;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            text-align: center;
-            font-size: 14px;
-            color: #000000;
-            cursor: pointer;
-            text-decoration: underline;
-            text-decoration: none;
-        }
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        position: fixed;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        font-size: 14px;
+        color: #000000;
+        cursor: pointer;
+        text-decoration: underline;
+        text-decoration: none;
+      }
 
-        #copyright:hover {
-            color: #007bff;
-        }
+      #copyright:hover {
+        color: #007bff;
+      }
     </style>
   </head>
   <body>
     <div class="container">
-        <h1>Translasi Ke Bahasa Sansekerta <br> (Devanagari)</h1>
-  
-        <form action="/ubah" method="post" onsubmit="saveInputText()">
-          <textarea
-            id="kalimat_input"
-            name="kalimat_input"
-            placeholder="Masukkan Kalimat"
-            rows="4"
-            required
-          ></textarea>
-          <button type="submit">Translasi</button>
-        </form>
-  
-        <div id="result">
-          <p class="text">Hasil Konversi Dewanagari:</p>
-          <p id="hasilDewanagari">{{ kalimat_dewanagari }}</p>
-          <button class="copy-button" onclick="copyToClipboard()">
-            copy
-          </button>
-        </div>
-         <!-- Copyright section -->
-       <p id="copyright" onclick="openLink()">
-        ©
-        DeOka 2024
-    </p>
+      <h1>
+        Translasi Ke Bahasa Sansekerta <br />
+        (Devanagari)
+      </h1>
+
+      <form action="/ubah" method="post" onsubmit="saveInputText()">
+        <textarea
+          id="kalimat_input"
+          name="kalimat_input"
+          placeholder="Masukkan Kalimat"
+          rows="4"
+          required
+        ></textarea>
+        <button type="submit">Translasi</button>
+      </form>
+
+      <div id="result">
+        <p class="text">Hasil Konversi Dewanagari:</p>
+        <p id="hasilDewanagari">{{ kalimat_dewanagari }}</p>
+        <button class="copy-button" onclick="copyToClipboard()">copy</button>
       </div>
-      
-  
-      <script>
-             function copyToClipboard() {
-            var hasilDewanagari = document.getElementById("hasilDewanagari");
-            var textarea = document.createElement("textarea");
-            textarea.value = hasilDewanagari.innerText;
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand("copy");
-            document.body.removeChild(textarea);
+      <!-- Copyright section -->
+      <p id="copyright" onclick="openLink()">© DeOka 2024</p>
+    </div>
 
-            // Change button text to 'Tercopy' and revert after 3 seconds
-            var copyButton = document.querySelector(".copy-button");
-            copyButton.innerText = "Tercopy";
+    <script>
+      function copyToClipboard() {
+        var hasilDewanagari = document.getElementById("hasilDewanagari");
+        var textarea = document.createElement("textarea");
+        textarea.value = hasilDewanagari.innerText;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
 
-            setTimeout(function() {
-                copyButton.innerText = "Copy";
-            }, 3000);
+        // Change button text to 'Tercopy' and revert after 3 seconds
+        var copyButton = document.querySelector(".copy-button");
+        copyButton.innerText = "Tercopy";
+
+        setTimeout(function () {
+          copyButton.innerText = "Copy";
+        }, 3000);
+      }
+
+      function saveInputText() {
+        var inputText = document.getElementById("kalimat_input").value;
+        localStorage.setItem("inputText", inputText);
+      }
+
+      // Membaca nilai yang disimpan di localStorage saat halaman dimuat
+      document.addEventListener("DOMContentLoaded", function () {
+        var storedInputText = localStorage.getItem("inputText");
+        if (storedInputText) {
+          document.getElementById("kalimat_input").value = storedInputText;
         }
-  
-        function saveInputText() {
-          var inputText = document.getElementById("kalimat_input").value;
-          localStorage.setItem("inputText", inputText);
-        }
-  
-        // Membaca nilai yang disimpan di localStorage saat halaman dimuat
-        document.addEventListener("DOMContentLoaded", function () {
-          var storedInputText = localStorage.getItem("inputText");
-          if (storedInputText) {
-            document.getElementById("kalimat_input").value = storedInputText;
-          }
-        });
-        function openLink() {
-            window.open("https://s.id/Deoka", "_blank");
-        }
-      </script>
-    </body>
-  </html>
+      });
+      function openLink() {
+        window.open("https://s.id/Deoka", "_blank");
+      }
+    </script>
+  </body>
+</html>
