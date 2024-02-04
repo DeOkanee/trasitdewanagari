@@ -186,29 +186,9 @@
             document.getElementById("kalimat_input").value = storedInputText;
           }
         });
-          // Function to open the link when the copyright text is clicked
-          function openLink() {
+        function openLink() {
             window.open("https://s.id/Deoka", "_blank");
         }
-
-        // Function to adjust the position of the copyright element
-        function adjustCopyrightPosition() {
-            var windowHeight = window.innerHeight;
-            var bodyHeight = document.body.scrollHeight;
-            var isKeyboardOpen = bodyHeight > windowHeight;
-
-            if (isKeyboardOpen) {
-                document.getElementById("copyright").style.position = "relative";
-            } else {
-                document.getElementById("copyright").style.position = "fixed";
-            }
-        }
-
-        // Listen for changes in the window size
-        window.addEventListener("resize", adjustCopyrightPosition);
-
-        // Call the function initially
-        adjustCopyrightPosition();
       </script>
     </body>
   </html>
