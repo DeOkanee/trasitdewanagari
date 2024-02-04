@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Konverter Dewanagari</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+
+        height: 100vh;
+      }
+      .container {
+        width: 60%;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      p{
+        margin-bottom: 20px;
+      }
+      h1 {
+        font-size: 24px;
+      }
+      form {
+        text-align: center;
+      }
+      textarea {
+        width: 100%;
+        padding: 15px; /* Menambahkan padding agar lebih mudah terlihat */
+        margin: 10px 0; /* Memberikan ruang di atas dan di bawah input */
+        box-sizing: border-box;
+        resize: vertical; /* Membuat textarea bisa diubah tingginya */
+        font-size: 15px;
+        font-family: "Times New Roman", Times, serif;
+      }
+
+      button {
+        width: 10%;
+        padding: 10px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+      #result {
+        margin-top: 20px;
+        display: flex; /* Menjadikan elemen anak (children) menjadi flex container */
+        flex-direction: column; /* Menjadikan children ditata secara vertikal */
+        align-items: center; /* Membuat children berada di tengah-tengah secara horizontal */
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: #f9f9f9;
+      }
+
+      #hasilDewanagari {
+        word-wrap: break-word;
+        font-size: 16px;
+      }
+      .copy-button {
+        margin-bottom: 10px;
+        margin-top: 10px;
+        background-color: #007bff;
+        color: #fff;
+        padding: 8px 9px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .copy-button:hover {
+        background-color: #0056b3;
+      }
+      @media (max-width: 567px) {
+        .container {
+          margin-top: 20px;
+          height: auto;
+          width: 90%; /* Mengisi lebar layar penuh pada layar kecil */
+          padding: 10px; /* Mengurangi padding agar sesuai dengan layar kecil */
+        }
+        h1 {
+          font-size: 23px; /* Mengurangi ukuran font pada layar kecil */
+        }
+        textarea {
+          font-size: 14px; /* Mengurangi ukuran font textarea pada layar kecil */
+          padding: 10px; /* Mengurangi padding textarea pada layar kecil */
+          margin: 5px 0; /* Mengurangi margin textarea pada layar kecil */
+        }
+        button {
+          width: auto;
+          font-size: 15px; /* Mengurangi ukuran font tombol pada layar kecil */
+        }
+        #result {
+          margin-top: 10px; /* Mengurangi margin atas pada layar kecil */
+        }
+        #hasilDewanagari {
+          font-size: 14px; /* Mengurangi ukuran font pada layar kecil */
+        }
+        .copy-button {
+          margin-top: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+        <h1>Konverter Dewanagari</h1>
+  
+        <form action="/ubah" method="post" onsubmit="saveInputText()">
+          <textarea
+            id="kalimat_input"
+            name="kalimat_input"
+            placeholder="Masukkan Kalimat"
+            rows="4"
+            required
+          ></textarea>
+          <button type="submit">Ubah</button>
+        </form>
+  
+        <div id="result">
+          <p class="text">Hasil Konversi Dewanagari:</p>
+          <p id="hasilDewanagari">{{ kalimat_dewanagari }}</p>
+          <button class="copy-button" onclick="copyToClipboard()">
+            Salin Hasil
+          </button>
+        </div>
+      </div>
+  
+      <script>
+        function copyToClipboard() {
+          var hasilDewanagari = document.getElementById("hasilDewanagari");
+          var textarea = document.createElement("textarea");
+          textarea.value = hasilDewanagari.innerText;
+          document.body.appendChild(textarea);
+          textarea.select();
+          document.execCommand("copy");
+          document.body.removeChild(textarea);
+          alert("Hasil berhasil disalin!");
+        }
+  
+        function saveInputText() {
+          var inputText = document.getElementById("kalimat_input").value;
+          localStorage.setItem("inputText", inputText);
+        }
+  
+        // Membaca nilai yang disimpan di localStorage saat halaman dimuat
+        document.addEventListener("DOMContentLoaded", function () {
+          var storedInputText = localStorage.getItem("inputText");
+          if (storedInputText) {
+            document.getElementById("kalimat_input").value = storedInputText;
+          }
+        });
+      </script>
+    </body>
+  </html>
