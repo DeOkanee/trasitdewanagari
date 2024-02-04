@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Konverter Dewanagari</title>
+    <title>Translasi Ke Bahasa Sansekerta (Devanagari)</title>
     <style>
       body {
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -134,7 +134,7 @@
   </head>
   <body>
     <div class="container">
-        <h1>Konverter Dewanagari</h1>
+        <h1>Translasi Ke Bahasa Sansekerta <br> (Devanagari)</h1>
   
         <form action="/ubah" method="post" onsubmit="saveInputText()">
           <textarea
@@ -144,14 +144,14 @@
             rows="4"
             required
           ></textarea>
-          <button type="submit">Ubah</button>
+          <button type="submit">Translasi</button>
         </form>
   
         <div id="result">
           <p class="text">Hasil Konversi Dewanagari:</p>
           <p id="hasilDewanagari">{{ kalimat_dewanagari }}</p>
           <button class="copy-button" onclick="copyToClipboard()">
-            Salin Hasil
+            copy
           </button>
         </div>
          <!-- Copyright section -->
@@ -163,15 +163,22 @@
       
   
       <script>
-        function copyToClipboard() {
-          var hasilDewanagari = document.getElementById("hasilDewanagari");
-          var textarea = document.createElement("textarea");
-          textarea.value = hasilDewanagari.innerText;
-          document.body.appendChild(textarea);
-          textarea.select();
-          document.execCommand("copy");
-          document.body.removeChild(textarea);
-          alert("Hasil berhasil disalin!");
+             function copyToClipboard() {
+            var hasilDewanagari = document.getElementById("hasilDewanagari");
+            var textarea = document.createElement("textarea");
+            textarea.value = hasilDewanagari.innerText;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textarea);
+
+            // Change button text to 'Tercopy' and revert after 3 seconds
+            var copyButton = document.querySelector(".copy-button");
+            copyButton.innerText = "Tercopy";
+
+            setTimeout(function() {
+                copyButton.innerText = "Copy";
+            }, 3000);
         }
   
         function saveInputText() {
