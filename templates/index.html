@@ -113,6 +113,23 @@
           margin-top: 10px;
         }
       }
+      #copyright {
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            font-size: 14px;
+            color: #000000;
+            cursor: pointer;
+            text-decoration: underline;
+            text-decoration: none;
+        }
+
+        #copyright:hover {
+            color: #007bff;
+        }
     </style>
   </head>
   <body>
@@ -137,7 +154,13 @@
             Salin Hasil
           </button>
         </div>
+         <!-- Copyright section -->
+       <p id="copyright" onclick="openLink()">
+        ©
+        DeOka 2024
+    </p>
       </div>
+      
   
       <script>
         function copyToClipboard() {
@@ -163,6 +186,29 @@
             document.getElementById("kalimat_input").value = storedInputText;
           }
         });
+          // Function to open the link when the copyright text is clicked
+          function openLink() {
+            window.open("https://s.id/Deoka", "_blank");
+        }
+
+        // Function to adjust the position of the copyright element
+        function adjustCopyrightPosition() {
+            var windowHeight = window.innerHeight;
+            var bodyHeight = document.body.scrollHeight;
+            var isKeyboardOpen = bodyHeight > windowHeight;
+
+            if (isKeyboardOpen) {
+                document.getElementById("copyright").style.position = "relative";
+            } else {
+                document.getElementById("copyright").style.position = "fixed";
+            }
+        }
+
+        // Listen for changes in the window size
+        window.addEventListener("resize", adjustCopyrightPosition);
+
+        // Call the function initially
+        adjustCopyrightPosition();
       </script>
     </body>
   </html>
