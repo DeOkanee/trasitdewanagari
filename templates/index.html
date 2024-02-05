@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Translasi Ke Bahasa Sansekerta (Devanagari)</title>
-    <link rel="icon" href="https://i.ibb.co/1MRP2mD/ICON.png" type="image/x-icon"/>
+    <link rel="icon" href="https://i.ibb.co/935rD3P/Icon-Dewanagari.png" type="image/x-icon"/>
     <style>
 
       body {
@@ -142,6 +142,7 @@
         cursor: pointer;
         text-decoration: underline;
         text-decoration: none;
+        
       }
 
       #copyright:hover {
@@ -175,7 +176,7 @@
       <!-- Copyright section -->
       <p id="copyright" onclick="openLink()">© DeOka 2024</p>
     </div>
-    <div id="overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.8); z-index: 999; display: none;">
+    <div id="overlay" style=" position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.8); z-index: 999; display: none;">
       <p style="text-align: center; padding-top: 20%; font-size: 24px;">Klik kanan dinonaktifkan untuk alasan Copyright.</p>
   </div>
     <script>
@@ -213,14 +214,8 @@
         window.open("https://s.id/Deoka", "_blank");
       }
 
-      //keamanan
-      document.addEventListener('contextmenu', function (e) {
-        e.preventDefault();
-        document.getElementById('overlay').style.display = 'block';
-        setTimeout(function () {
-            document.getElementById('overlay').style.display = 'none';
-        }, 3000); // Menampilkan pesan selama 3 detik
-    });
+
+    
     </script>
   </body>
 </html>
