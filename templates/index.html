@@ -99,6 +99,23 @@
         margin-top: -16px;
         color: orange;
       }
+      #copyright {
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        position: fixed;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        font-size: 14px;
+        color: #000000;
+        cursor: pointer;
+        text-decoration: underline;
+        text-decoration: none;
+      }
+
+      #copyright:hover {
+        color: #007bff;
+      }
       @media (max-width: 567px) {
         .container {
           margin-top: 20px;
@@ -142,23 +159,7 @@
           margin-top: 10px;
         }
       }
-      #copyright {
-        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-        position: fixed;
-        bottom: 10px;
-        left: 50%;
-        transform: translateX(-50%);
-        text-align: center;
-        font-size: 14px;
-        color: #000000;
-        cursor: pointer;
-        text-decoration: underline;
-        text-decoration: none;
-      }
-
-      #copyright:hover {
-        color: #007bff;
-      }
+     
     </style>
   </head>
   <body>
@@ -185,7 +186,7 @@
       <div id="result">
         <p class="text">Hasil Konversi Dewanagari:</p>
         <p id="hasilDewanagari">{{ kalimat_dewanagari }}</p>
-        <button class="copy-button" onclick="copyToClipboard()">copy</button>
+        <button class="copy-button" onclick="copyToClipboard()">salin</button>
       </div>
       <!-- Copyright section -->
       <p id="copyright" onclick="openLink()">© DeOka 2024</p>
@@ -226,15 +227,15 @@
         textarea.value = hasilDewanagari.innerText;
         document.body.appendChild(textarea);
         textarea.select();
-        document.execCommand("copy");
+        document.execCommand("salin");
         document.body.removeChild(textarea);
 
         // Change button text to 'Tercopy' and revert after 3 seconds
         var copyButton = document.querySelector(".copy-button");
-        copyButton.innerText = "Tercopy";
+        copyButton.innerText = "Tersalin";
 
         setTimeout(function () {
-          copyButton.innerText = "Copy";
+          copyButton.innerText = "salin";
         }, 3000);
       }
 
