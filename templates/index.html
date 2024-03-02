@@ -228,17 +228,18 @@
       </div>
     </div>
     <script>
-      // Check internet connection
+      // Function to check internet connection
       function checkInternetConnection() {
         var online = navigator.onLine;
+        var noInternetOverlay = document.getElementById('noInternetOverlay');
         if (!online) {
-          document.getElementById('noInternetOverlay').style.display = 'flex';
+          noInternetOverlay.style.display = 'flex';
         } else {
-          document.getElementById('noInternetOverlay').style.display = 'none';
+          noInternetOverlay.style.display = 'none';
         }
       }
 
-      // Reload page on button click
+      // Function to reload page
       function reloadPage() {
         location.reload();
       }
@@ -246,14 +247,8 @@
       // Call checkInternetConnection when DOM loads and whenever the connectivity status changes
       document.addEventListener('DOMContentLoaded', function () {
         checkInternetConnection();
-      });
-
-      window.addEventListener('online', function () {
-        checkInternetConnection();
-      });
-
-      window.addEventListener('offline', function () {
-        checkInternetConnection();
+        // Check internet connection every 3 seconds
+        setInterval(checkInternetConnection, 3000);
       });
     </script>
     <script>
