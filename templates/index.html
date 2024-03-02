@@ -208,6 +208,54 @@
         Klik kanan dinonaktifkan untuk alasan Copyright.
       </p>
     </div>
+    <!-- Overlay for No Internet -->
+    <div id="noInternetOverlay" style="display: none;">
+      <div style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.8);
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      ">
+        <h2>No Internet Connection</h2>
+        <button onclick="reloadPage()">Try Again</button>
+      </div>
+    </div>
+    <script>
+      // Check internet connection
+      function checkInternetConnection() {
+        var online = navigator.onLine;
+        if (!online) {
+          document.getElementById('noInternetOverlay').style.display = 'flex';
+        } else {
+          document.getElementById('noInternetOverlay').style.display = 'none';
+        }
+      }
+
+      // Reload page on button click
+      function reloadPage() {
+        location.reload();
+      }
+
+      // Call checkInternetConnection when DOM loads and whenever the connectivity status changes
+      document.addEventListener('DOMContentLoaded', function () {
+        checkInternetConnection();
+      });
+
+      window.addEventListener('online', function () {
+        checkInternetConnection();
+      });
+
+      window.addEventListener('offline', function () {
+        checkInternetConnection();
+      });
+    </script>
     <script>
       function gantiTeks() {
         var penurunanElem = document.querySelector(".penurunan");
